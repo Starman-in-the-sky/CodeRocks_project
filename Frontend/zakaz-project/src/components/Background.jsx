@@ -11,5 +11,3 @@ const Background = () => {
         />
     );
 }
-
-export default App;
