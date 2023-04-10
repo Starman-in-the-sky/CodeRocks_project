@@ -3,5 +3,5 @@ import "../styles/Search.css"
 
 const Search = (props) => {
 
-    
+
 }
