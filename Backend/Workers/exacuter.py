@@ -1,6 +1,5 @@
 from Backend.Client.sqlite3_client import SQLiteClient
 
-#Регистрация данные
 class Users:
 
     def __init__(self, database_client: SQLiteClient):

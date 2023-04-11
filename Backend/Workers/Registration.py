@@ -1,7 +1,7 @@
 from Backend.Client.sqlite3_client import SQLiteClient
 from Backend.Workers.exacuter import Users, Employee, Employer
 
-database_client = SQLiteClient("users_cunem.db")
+database_client = SQLiteClient("pg2.sweb.ru/hachatryan")
 
 class Registration:
     def __init__(self, password: str, FIO: str, email = "", phone_number=""):
