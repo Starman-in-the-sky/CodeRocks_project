@@ -10,7 +10,7 @@ search = Search()
 def create_app():
     app = Flask(__name__)
     search.init_app(app)
-@post.route('/search')
+@app.route('/search')
 def search():
     keyword = request.args.get('q')
     search_posts = Post.query.msearch(keyword, fields=['title', 'content'], limit=6)
