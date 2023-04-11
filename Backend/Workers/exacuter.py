@@ -1,5 +1,6 @@
 from Backend.Client.sqlite3_client import SQLiteClient
 
+
 class Users:
 
     def __init__(self, database_client: SQLiteClient):
@@ -14,19 +15,20 @@ class Users:
         self.database_client.Close_con()
         self.setted_up = False
 
-    def create_user(self, email: str, phone_number: str, password: str, FIO: str):
+    def create_user(self, user_id: int, email: str, phone_number: str, password: str, FIO: str):
         ADD = """
-            INSERT INTO users(email, phone_number, password, FIO) VALUES(?, ?, ?, ?);
+           INSERT INTO users(user_id, email, phone_number, password, fio) VALUES(%s, %s, %s, %s, %s);
             """
-        self.database_client.Exacute_Command(ADD, (email, phone_number, password, FIO))
+        self.database_client.Exacute_Command(ADD, (user_id, email, phone_number, password, FIO))
 
     def get_user(self, user_id: int):
         GET_USER = """
-            SELECT user_id, email, phone_number, password FROM users WHERE user_id = %s;
+            SELECT user_id, email, phone_number, password, fio FROM users WHERE user_id = %s;
             """
         user = self.database_client.Exacute_Select_Command(GET_USER % user_id)
         return user if user else user
-#
+
+
 class Employee:
 
     def __init__(self, database_client: SQLiteClient):
@@ -41,11 +43,11 @@ class Employee:
         self.database_client.Close_con()
         self.setted_up = False
 
-    def create_user(self, sal_low: int, sal_big: int, education: str, information: str, profession: str, experience: str, user_id: int):
+    def create_user(self, employee_id: int, sal_low: int, sal_big: int, education: str, information: str, profession: str, experience: str, user_id: int):
         ADD = """
-            INSERT INTO employees(salary_lowest, salary_biggest, education, information, profession, experience, user_id) VALUES(?, ?, ?, ?, ?, ?, ?);
+            INSERT INTO employees(employee_id, salary_lowest, salary_biggest, education, information, profession, experience, user_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
             """
-        self.database_client.Exacute_Command(ADD, (sal_low, sal_big, education, information, profession, experience, user_id))
+        self.database_client.Exacute_Command(ADD, (employee_id, sal_low, sal_big, education, information, profession, experience, user_id))
 
     def get_user(self, employee_id: int):
         GET_USER = """
@@ -53,6 +55,7 @@ class Employee:
             """
         user = self.database_client.Exacute_Select_Command(GET_USER % employee_id)
         return user if user else user
+
 
 class Employer:
 
@@ -68,11 +71,11 @@ class Employer:
         self.database_client.Close_con()
         self.setted_up = False
 
-    def create_user(self, sal_low: int, sal_big: int, company_name: str, company_inf: str, vacancy: str, experience: str, user_id: int):
+    def create_user(self, employer_id: int, sal_low: int, sal_big: int, company_name: str, company_inf: str, vacancy: str, experience: str, user_id: int):
         ADD = """
-            INSERT INTO employers(salary_lowest, salary_biggest, company_name, company_inf, vacancy, experience, user_id) VALUES(?, ?, ?, ?, ?, ?, ?);
+            INSERT INTO employers(employer_id, salary_lowest, salary_biggest, company_name, company_inf, vacancy, experience, user_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s);
             """
-        self.database_client.Exacute_Command(ADD, (sal_low, sal_big, company_name, company_inf, vacancy, experience, user_id))
+        self.database_client.Exacute_Command(ADD, (employer_id, sal_low, sal_big, company_name, company_inf, vacancy, experience, user_id))
 
     def get_user(self, employer_id: int):
         GET_USER = """
@@ -80,6 +83,7 @@ class Employer:
             """
         user = self.database_client.Exacute_Select_Command(GET_USER % employer_id)
         return user if user else user
+
 
 class EmployerResponses:
 
@@ -95,11 +99,11 @@ class EmployerResponses:
         self.database_client.Close_con()
         self.setted_up = False
 
-    def create_user(self, response: str, mark: int, employee_id: int, employer_id: int):
+    def create_user(self, response_id: int, response: str, mark: int, employee_id: int, employer_id: int):
         ADD = """
-            INSERT INTO employer_responses(response, mark, employee_id, employer_id) VALUES(?, ?, ?, ?);
+            INSERT INTO employer_responses(response_id, response, mark, employee_id, employer_id) VALUES(%s, %s, %s, %s, %s);
             """
-        self.database_client.Exacute_Command(ADD, (response, mark, employee_id, employer_id))
+        self.database_client.Exacute_Command(ADD, (response_id, response, mark, employee_id, employer_id))
 
     def get_user(self, response_id: int):
         GET_USER = """
@@ -107,6 +111,7 @@ class EmployerResponses:
             """
         user = self.database_client.Exacute_Select_Command(GET_USER % response_id)
         return user if user else user
+
 
 class EmployeeResponses:
 
@@ -122,11 +127,11 @@ class EmployeeResponses:
         self.database_client.Close_con()
         self.setted_up = False
 
-    def create_user(self, response: str, mark: int, employee_id: int, employer_id: int):
+    def create_user(self, response_id: int, response: str, mark: int, employee_id: int, employer_id: int):
         ADD = """
-            INSERT INTO employee_responses(response, mark, employee_id, employer_id) VALUES(?, ?, ?, ?);
+            INSERT INTO employee_responses(response_id, response, mark, employee_id, employer_id) VALUES(%s, %s, %s, %s, %s);
             """
-        self.database_client.Exacute_Command(ADD, (response, mark, employee_id, employer_id))
+        self.database_client.Exacute_Command(ADD, (response_id, response, mark, employee_id, employer_id))
 
     def get_user(self, response_id: int):
         GET_USER = """
