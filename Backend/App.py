@@ -7,9 +7,10 @@ from flask_msearch import Search
 
 search = Search()
 
-def create_app():
-    app = Flask(__name__)
-    search.init_app(app)
+
+app = Flask(__name__)
+search.init_app(app)
+
 @app.route('/search')
 def search():
     keyword = request.args.get('q')
