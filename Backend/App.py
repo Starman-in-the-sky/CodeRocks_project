@@ -3,41 +3,18 @@ from Client.sqlite3_client import SQLiteClient
 from Workers.exacuter import Users, Employee, Employer, EmployeeResponses, EmployerResponses
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_msearch import Search
 
-app = Flask(__name__)
+search = Search()
 
-database_client = SQLiteClient("users_cunem.db")
-email = 'a'
-phone_number = 'a'
-password = 'a'
-FIO = 'a'
+def create_app():
+    app = Flask(__name__)
+    search.init_app(app)
+@post.route('/search')
+def search():
+    keyword = request.args.get('q')
+    search_posts = Post.query.msearch(keyword, fields=['title', 'content'], limit=6)
+    return render_template('post/search.html', search_posts=search_posts)
 
-# cl = Users(database_client=database_client)
-# cl.setup()
-# # cl.create_user(email=email, phone_number=phone_number, password=password, FIO=FIO)
-# mas = cl.get_user(14)
-# print(mas[0])
-# cl.shutdown()
-#
-# cl = Employee(database_client=database_client)
-# cl.setup()
-# # cl.create_user(1, 1, 'a', 'a', 'a', 'a', mas[0][0])
-# mas = cl.get_user(3)
-# print(mas[0])
-#
-#
-# cl = Employer(database_client=database_client)
-# cl.setup()
-# # cl.create_user(1, 1, 'a', 'a', 'a', 'a', mas[0][0])
-# mas = cl.get_user(1)
-# print(mas[0])
-
-# cl = EmployerResponses(database_client=database_client)
-# cl.setup()
-# cl.create_user('a', 1, 3, 1)
-# mas = cl.get_user(1)
-# print(mas[0])
-
-#
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if __name__ == "__main__":
+     app.run(debug=True)
