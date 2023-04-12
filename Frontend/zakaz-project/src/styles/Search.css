@@ -1,6 +1,28 @@
 .search-box {
-    position: fixed;
-    background-color: #e6ede6;
-    margin: auto;
+    color:#FFFFFF;
     text-align: center;
+    margin-top: 50px;
+    background: #1C82AD;
+}
+
+.search-field {
+    width: 40%;
+    height: 30px;
+    font-family:sans-serif;
+    font-size: 1.05rem;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-width: 0px;
+}
+
+.search-button {
+    height: 36px;
+    font-family:sans-serif;
+    font-size: 1.05rem;
+    color: #FFFFFF;
+    background-color: #00337C;
+    width: 10%;
+    border:none;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
