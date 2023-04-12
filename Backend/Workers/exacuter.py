@@ -28,6 +28,15 @@ class Users:
         user = self.database_client.Exacute_Select_Command(GET_USER % user_id)
         return user if user else user
 
+    def select(self, params_text: str, params: tuple):
+        GET_USERS = """
+                    SELECT * FROM users
+                    """
+        if params_text != None and params_text != "":
+            GET_USERS += " WHERE " + params_text
+        user = self.database_client.Exacute_Select_Command_With_params(GET_USERS, params)
+        return user if user else user
+
 
 class Employee:
 
@@ -54,6 +63,15 @@ class Employee:
             SELECT * FROM employees WHERE employee_id = %s;
             """
         user = self.database_client.Exacute_Select_Command(GET_USER % employee_id)
+        return user if user else user
+
+    def select(self, params_text: str, params: tuple):
+        GET_USERS = """
+                    SELECT * FROM employees
+                    """
+        if params_text != None and params_text != "":
+            GET_USERS += " WHERE " + params_text
+        user = self.database_client.Exacute_Select_Command_With_params(GET_USERS, params)
         return user if user else user
 
 
@@ -84,6 +102,15 @@ class Employer:
         user = self.database_client.Exacute_Select_Command(GET_USER % employer_id)
         return user if user else user
 
+    def select(self, params_text: str, params: tuple):
+        GET_USERS = """
+                    SELECT * FROM employers
+                    """
+        if params_text != None and params_text != "":
+            GET_USERS += " WHERE " + params_text
+        user = self.database_client.Exacute_Select_Command_With_params(GET_USERS, params)
+        return user if user else user
+
 
 class EmployerResponses:
 
@@ -110,6 +137,15 @@ class EmployerResponses:
             SELECT * FROM employer_responses WHERE response_id = %s;
             """
         user = self.database_client.Exacute_Select_Command(GET_USER % response_id)
+        return user if user else user
+
+    def select(self, params_text: str, params: tuple):
+        GET_USERS = """
+                    SELECT * FROM employer_responses
+                    """
+        if params_text != None and params_text != "":
+            GET_USERS += " WHERE " + params_text
+        user = self.database_client.Exacute_Select_Command_With_params(GET_USERS, params)
         return user if user else user
 
 
@@ -139,3 +175,20 @@ class EmployeeResponses:
             """
         user = self.database_client.Exacute_Select_Command(GET_USER % response_id)
         return user if user else user
+
+    def select(self, params_text: str, params: tuple):
+        GET_USERS = """
+                    SELECT * FROM employee_responses
+                    """
+        if params_text != None and params_text != "":
+            GET_USERS += " WHERE " + params_text
+        user = self.database_client.Exacute_Select_Command_With_params(GET_USERS, params)
+        return user if user else user
+
+
+# cl = SQLiteClient(dbname='hachatryan', user='hachatryan', password='367878Artem', host='pg2.sweb.ru')
+# u = Employee(database_client=cl)
+# u.setup()
+# mas = u.select(params_text="(education) in (%s) and (experience) in (%s)", params=(('a'), ('a')))
+# print(mas)
+# u.shutdown()

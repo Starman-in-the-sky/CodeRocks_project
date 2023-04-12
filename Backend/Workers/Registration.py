@@ -1,5 +1,5 @@
 from Backend.Client.sqlite3_client import SQLiteClient
-from Backend.Workers.exacuter import Users, Employee, Employer
+from Backend.Workers.exacuter import Users, Employee, Employer, EmployeeResponses, EmployerResponses
 
 database_client = SQLiteClient(dbname='hachatryan', user='hachatryan', password='367878Artem', host='pg2.sweb.ru')
 
