@@ -1,0 +1,17 @@
+<h4>{{numrows}} Число найденых запросов</h4>
+<table class="table table-striped custab">
+  <thead>
+      <tr>
+         <th>Вакансии</th>
+         <th>User_id</th>
+         <th>Oпыт</th>
+      </tr>
+  </thead>
+  <tbody>
+{% for row in employer %}
+   <tr>
+    <td>{{row[5]}}</td>
+    <td>{{row[0]}}</td>
+    <td>{{row[7]}}</td>
+   </tr>
+{% endfor %}
