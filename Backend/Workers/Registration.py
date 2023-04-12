@@ -23,6 +23,7 @@ class Registration_users:
         u = Users(database_client=database_client)
         u.setup()
         u.create_user(user_id= self.user_id, email=self.email, phone_number=self.phone_number, password=self.password, FIO=self.FIO)
+        u.shutdown()
 
 
 class Registration_resume:
@@ -36,10 +37,11 @@ class Registration_resume:
         self.experience = experiense
         self.user_id = user_id
 
-    def add_vacancy(self):
+    def add_resume(self):
         u = Employee(database_client=database_client)
         u.setup()
         u.create_user(employee_id= self.employee_id, sal_low=self.sal_low, sal_big=self.sal_big, education=self.education, information=self.information, profession=self.profession, experience=self.experience, user_id=self.user_id)
+        u.shutdown()
 
 
 class Registration_vacancy:
@@ -57,4 +59,5 @@ class Registration_vacancy:
         u = Employer(database_client=database_client)
         u.setup()
         u.create_user(employer_id= self.employer_id, sal_low=self.sal_low, sal_big=self.sal_big, company_name=self.company_name, company_inf=self.company_inf, vacancy=self.vacancy, experience=self.experience, user_id=self.user_id)
+        u.shutdown()
 
