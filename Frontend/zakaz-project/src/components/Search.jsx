@@ -1,6 +1,5 @@
 import React from 'react';
 import "../styles/Search.css"
-import * as mdb from 'mdb-ui-kit';
 
 const Search = (props) => {
     return(
