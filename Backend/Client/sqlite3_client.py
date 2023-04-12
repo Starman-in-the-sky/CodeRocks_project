@@ -30,3 +30,17 @@ class SQLiteClient:
             return self.cur.fetchall()
         else:
             raise ConnectionError("You need to create conaction to database!")
+
+    def Exacute_Select_Command_With_params(self, Command: str, params: tuple):
+        if self.conn is not None:
+            self.cur.execute(Command, params)
+            return self.cur.fetchall()
+        else:
+            raise ConnectionError("You need to create conaction to database!")
+
+# get = "SELECT * FROM users where (email) in (%s) and (phone_number) in (%s)"
+# cl = SQLiteClient(dbname='hachatryan', user='hachatryan', password='367878Artem', host='pg2.sweb.ru')
+# cl.Create_con()
+# mas = cl.Exacute_Select_Command_With_params(get, params=(('a'), ('a')))
+# cl.Close_con()
+# print(mas)
