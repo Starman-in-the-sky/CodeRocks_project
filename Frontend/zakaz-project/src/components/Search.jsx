@@ -6,9 +6,14 @@ const Search = (props) => {
     return(
         <div className='search-box'>
             <input
+                className="search-field"
                 type="text"
-                size=""
+                placeholder="Вакансии"
             />
+            <button
+                className="search-button"
+                onClick={alert('Clicked!')}>Найти
+            </button>
         </div>
     );
 }
